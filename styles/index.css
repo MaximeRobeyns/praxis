@@ -17,7 +17,7 @@ h1{
   margin-bottom: 10px;
 }
 
-div a{
+.gamelink{
   margin: 5px auto;
   position: relative;
   display: block;
@@ -52,6 +52,10 @@ form{
   width: 400px;
   margin: 50px auto 0px auto;
   padding: 40px;
+}
+
+.main{
+    padding-bottom: 10px;
 }
 
 .txt_inpt{
@@ -92,4 +96,9 @@ form{
   font-size: 35px;
   width: 200px;
   transform: translateY(-50%);
+}
+
+.credits{
+  color:#707070;
+  font-size: 12px;
 }
