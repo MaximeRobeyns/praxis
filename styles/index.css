@@ -1,0 +1,95 @@
+html{
+  font-family: sans-serif;
+  position: relative;
+  display: block;
+  margin: 0px;
+}
+
+body{
+  position: relative;
+  display: block;
+  font-size: 0.96em;
+  margin: 0px;
+}
+
+h1{
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
+div a{
+  margin: 5px auto;
+  position: relative;
+  display: block;
+}
+
+form{
+  position: relative;
+  display: block;
+}
+
+.main-bg{
+  background-color: #dddddd;
+}
+
+.vh-align{
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+}
+
+.justify{
+  margin: 5px auto 5px 50px;
+}
+
+.start{
+  float: right;
+}
+
+.main-menu{
+  position: relative;
+  width: 400px;
+  margin: 50px auto 0px auto;
+  padding: 40px;
+}
+
+.txt_inpt{
+  width: 3em;
+  text-align: center;
+}
+
+.txt-elem{
+  margin: 20px 30px;
+  font-size: 1.1em;
+  display: inline-block;
+}
+
+.score{
+  float: right;
+}
+
+.game-wrapper{
+  position: relative;
+  display: block;
+  margin-top: 200px;
+  width: 100%;
+  height: 75px;
+}
+
+.endcard{
+  display: none;
+}
+
+.eqtn-elem{
+  transform: translate(-105%, -50%);
+  text-align: right;
+  padding-right: 10px;
+  font-size: 35px;
+}
+
+.answer{
+  font-size: 35px;
+  width: 200px;
+  transform: translateY(-50%);
+}
