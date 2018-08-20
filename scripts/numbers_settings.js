@@ -212,6 +212,7 @@ function endGameFunc(){
   }
   if (exprsCount.length > 1){
     othersText.innerHTML = 'There were also '+String(exprsCount.length-1)+' other possible answers';
+    output.innerHTML = '';
     for (var i = 1; i < exprsCount.length; i++){
       var li = document.createElement('li');
       li.appendChild(document.createTextNode(exprsCount[i]));
@@ -232,7 +233,7 @@ function endGameFunc(){
       var answer = eval(rawAnswer);
     } catch (e){
       document.getElementById('finishBTN').innerHTML = 'Try Again';
-      document.getElementById('error_text').innerHTML = 'Could not parse your expression ¯\\_(ツ)_/¯ sorry.<br> Try to fix mismatched partnethese and press "try again".';
+      document.getElementById('error_text').innerHTML = 'Could not parse your expression ¯\\_(ツ)_/¯ sorry.<br> Try to fix mismatched parentheses and press "try again".';
       return
     }
     nums = rawAnswer.match(/\d+/g);

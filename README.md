@@ -1,4 +1,4 @@
 # praxis
 Some silly games to keep you sharp...
 
-[Here is the game](https://maximerobeyns.github.io/praxis/index.html)
+[Here is the game](https://praxis-games.github.io/praxis/)
