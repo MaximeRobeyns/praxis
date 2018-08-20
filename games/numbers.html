@@ -18,9 +18,10 @@
     <div class="main-bg main-menu main">
       <div class="settings-wrapper" id='settings-wrapper'>
         <h1>Numbers</h1>
-        <p>'Countdown rules' means that you have to choose 'large' numbers (25,50,75,100) and 'small' numbers (1 to 9).</p>
+        <p><b>Rules:</b> Use the given numbers (once or not at all) and the four basic binary operators (+,–,×,÷) to reach the target value.</p>
+        <!-- <p>'Countdown rules' means that you have to choose 'large' numbers (25,50,75,100) and 'small' numbers (1 to 9).</p> -->
         <form class="settings" action="numbers.html" method="get">
-          <input type="checkbox" name="cdnMode" value="1" id='cdnMode' checked><label for='cdnMode'>Countdown rules</label><br>
+          <input type="checkbox" name="cdnMode" value="1" id='cdnMode' checked><label for='cdnMode'>Use Countdown Rules</label><br>
         </form>
         <br>
         <form class="cdnForm" method="post" id='cdnForm'>
@@ -50,6 +51,7 @@
           <input type="submit" name="submit" value="Submit">
         </form>
         <p id='error' class='error'>&nbsp;</p>
+        <a href="../index.html">Main Menu</a>
       </div>
       <div class="gameWrapper" id='game-wrapper' style='display: none;'>
         <h2 class='target' id='target'>Target: </h2>
@@ -57,7 +59,7 @@
 
         </div>
         <div class="timebar" id='timebar'></div>
-        <p>Scribblings:</p>
+        <p>Notes:</p>
         <textarea name="working" rows="6" cols="48" style='resize: none;' id='working'></textarea>
         <p>Answer:</p>
         <input type="text" name="solution" value="" placeholder="e.g. (a+b)*(c+(d/e))-f" id='answer'>

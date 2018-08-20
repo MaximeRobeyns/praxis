@@ -54,6 +54,16 @@ form{
   padding: 40px;
 }
 
+
+#tMode {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.dur{
+  display: inline-block;
+}
+
 .main{
     padding-bottom: 10px;
 }

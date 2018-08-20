@@ -25,17 +25,18 @@
         <input type="checkbox" name="sub" value="sub" id='sub' checked><label for='sub'>Subtraction</label><br>
         <p class='justify'>Same as addition problems</p>
         <input type="checkbox" name="mult" value="mult" id='mult' checked><label for='mult'>Multiplication</label><br>
-        <p class='justify'>Range: (<input type="text" name="mult1min" value="2" class='txt_inpt' required> to <input type="text" name="mult1max" value="12" class='txt_inpt' required>) + (<input type="text" name="mult2min" value="2" class='txt_inpt' required> to <input type="text" name="mult2max" value="100" class='txt_inpt' required>)</p>
+        <p class='justify'>Range: (<input type="text" name="mult1min" value="2" class='txt_inpt' required> to <input type="text" name="mult1max" value="12" class='txt_inpt' required>) + (<input type="text" name="mult2min" value="2" class='txt_inpt' required> to <input type="text" name="mult2max" id='mult2max' value="100" class='txt_inpt' required>)</p>
         <input type="checkbox" name="div" value="div" id='div' checked><label for='div'>Division</label><br>
         <p class='justify'>Same as multiplication problems</p>
         <br>
-        Duration: <select class="" name="dur">
+        Duration: <select class="dur" name="dur">
           <option value="30">30 seconds</option>
           <option value="60">60 seconds</option>
           <option value="120" selected="selected">120 seconds</option>
           <option value="300">300 seconds</option>
           <option value="600">600 seconds</option>
         </select>
+        <input type='checkbox' name='tMode' value='1' id='tMode'><label for='tMode'>Times table mode</label>
         <br>
         <input type="submit" name="Start" value="Start" class='start'>
       </form>
@@ -44,6 +45,21 @@
     </div>
   </body>
   <script type="text/javascript">
-
+    var tMode = document.getElementById('tMode');
+    var timesTables = false;
+    function ttchange(bool){
+      document.getElementById('add').checked = !bool;
+      document.getElementById('sub').checked = !bool;
+      document.getElementById('mult').checked = bool ? true : true;
+      document.getElementById('div').checked = bool ? true : true;
+      if (bool) {
+        document.getElementById('mult2max').value = 12;
+      } else {
+        document.getElementById('mult2max').value = 100;
+      }
+    }
+    tMode.onchange = function(){
+      ttchange(tMode.checked);
+    }
   </script>
 </html>

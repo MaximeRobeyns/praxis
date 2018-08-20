@@ -161,9 +161,6 @@ function solve(){
 
   function addExpr(expr){
     exprsCount.push(expr.toString());
-    /*var li = document.createElement('li');
-    li.appendChild(document.createTextNode(expr.toString()));
-    output.appendChild(li);*/
   }
 
   function done(){
@@ -211,7 +208,11 @@ function endGameFunc(){
     best.innerHTML = exprsCount[0];
   }
   if (exprsCount.length > 1){
-    othersText.innerHTML = 'There were also '+String(exprsCount.length-1)+' other possible answers';
+    if (exprsCount.length == 1){
+      othersText.innerHTML = 'There was also '+String(exprsCount.length-1)+' other possible answer.';
+    } else {
+      othersText.innerHTML = 'There were also '+String(exprsCount.length-1)+' other possible answers.';
+    }
     output.innerHTML = '';
     for (var i = 1; i < exprsCount.length; i++){
       var li = document.createElement('li');
@@ -269,7 +270,7 @@ function endGameFunc(){
       resStr = 'Your answer was: '+rawAnswer+' = '+answer+'. ';
     if (illegal.length > 0){
       resStr += 'It included the following numbers that weren\'t in the original problem: <br>'+illegal;
-    } 
+    }
 
     if (overused.length > 0){
       resStr += 'You used the following number(s): '+String(overused)+', too many times.';
@@ -277,21 +278,21 @@ function endGameFunc(){
     }
 
     if (exprsCount.length > 0){
-      resStr += '<br><br>The target value was '+String(target);
+      resStr += '<br><br>The target value was <b>'+String(target)+'</b>';
     } else {
       resStr += '<br><br>There is, however, no solution to this problem.';
     }
   } else if (answer ==  target){
     document.getElementById('result').innerHTML = 'Correct!';
     if (exprsCount.length > 0){
-      resStr = 'Your answer was: '+rawAnswer+'.<br>The target value was '+String(target);
+      resStr = 'Your answer was: '+rawAnswer+'.<br>The target value was <b>'+String(target)+'</b>';
     } else {
       resStr = 'Your answer was: '+rawAnswer+'.<br>Well done, this was the only solution to the problem.';
     }
   } else {
     document.getElementById('result').innerHTML = String(Math.abs(target-answer))+' away...';
     if (exprsCount.length > 0){
-      resStr = 'You answered: '+rawAnswer+' = '+answer+'.<br>The target value was '+String(target);
+      resStr = 'You answered: '+rawAnswer+' = '+answer+'.<br>The target value was <b>'+String(target)+'</b>';
     } else {
       resStr = 'You answered: '+rawAnswer+' = '+answer+'.<br>There were unfortunately no solutions to this problem.';
     }
