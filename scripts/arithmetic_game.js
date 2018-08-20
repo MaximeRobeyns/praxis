@@ -33,16 +33,18 @@ var args = {
 }
 
 var raw_ops = [args.add.inc, args.sub, args.mult.inc, args.div];
+console.log(raw_ops);
 var ops = new Array();
 for (var i=0; i < raw_ops.length; i++){
     if (raw_ops[i] != null){
         ops.push(raw_ops[i]);
     }
-    if (ops.length == 0){
-        ops = ['add', 'sub', 'mult', 'div'];
-    }
+}
+if (ops.length == 0){
+    ops = ['add', 'sub', 'mult', 'div'];
 }
 
+console.log(ops)
 function exitFunction(){
     final_score.innerHTML = "Score: "+String(score);
     stats.innerHTML = "Average time per answer: "+String((args.time / score).toFixed(2))+" seconds";

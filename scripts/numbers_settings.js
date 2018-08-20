@@ -198,9 +198,14 @@ answerField.onkeyup = function(e){
   }
 }
 
+function count(arr) {
+  return arr.reduce((prev, curr) => (prev[curr] = ++prev[curr] || 1, prev), {})
+}
+
 function endGameFunc(){
   clearInterval(interval);
   var illegal = [];
+  var overused = [];
   var rawAnswer = answerField.value;
   if (rawAnswer == ''){
     var answer = 0;
@@ -219,9 +224,19 @@ function endGameFunc(){
         illegal.push(nums[i]);
       }
     }
+    if (illegal.length == 0){
+      var numCounts = count(numbers);
+      var ansCounts = count(nums);
+      for (var i = 0; i < nums.length; i++){
+        if (ansCounts[nums[i]] > numCounts[nums[i]]){
+          if (overused.indexOf(nums[i]) == -1){
+            overused.push(nums[i]);
+          }
+        }
+      }
+    }
   }
-
-
+  console.log(overused);
 
   answerField.value = '';
   document.getElementById('finishBTN').innerHTML = 'Finish';
@@ -231,28 +246,40 @@ function endGameFunc(){
   document.getElementById('numbersCtnr').innerHTML = '';
 
   clearInterval(interval);
-  if (illegal.length > 0){
+  var resStr = '';
+  if (illegal.length > 0 || overused.length > 0){
     document.getElementById('result').innerHTML = 'Incorrect answer.';
+      resStr = 'Your answer was: '+rawAnswer+' = '+answer+'. ';
+    if (illegal.length > 0){
+      resStr += 'It included the following numbers that weren\'t in the original problem: <br>'+illegal;
+    } 
+
+    if (overused.length > 0){
+      resStr += 'You used the following number(s): '+String(overused)+', too many times.';
+
+    }
+
     if (exprsCount.length > 0){
-      document.getElementById('resTxt').innerHTML = 'Your answer was: '+rawAnswer+' = '+answer+', however it included the following numbers that weren\'t in the original problem: <br>'+illegal+'<br><br>Possible expressions that gave '+String(target)+' included:';
+      resStr += '<br><br>Possible expressions that gave '+String(target)+' included:';
     } else {
-      document.getElementById('resTxt').innerHTML = 'Your answer was: '+rawAnswer+' = '+answer+', however it included the following numbers that weren\'t in the original problem: <br>'+illegal+'<br><br>There is, however, no solution to this problem.';
+      resStr += '<br><br>There is, however, no solution to this problem.';
     }
   } else if (answer ==  target){
     document.getElementById('result').innerHTML = 'Correct!';
     if (exprsCount.length > 0){
-      document.getElementById('resTxt').innerHTML = 'Your answer was: '+rawAnswer+'.<br>Other expressions that gave '+String(target)+' included:';
+      resStr = 'Your answer was: '+rawAnswer+'.<br>Other expressions that gave '+String(target)+' included:';
     } else {
-      document.getElementById('resTxt').innerHTML = 'Your answer was: '+rawAnswer+'.<br>Well done, this was the only solution to the problem.';
+      resStr = 'Your answer was: '+rawAnswer+'.<br>Well done, this was the only solution to the problem.';
     }
   } else {
     document.getElementById('result').innerHTML = String(Math.abs(target-answer))+' away...';
     if (exprsCount.length > 0){
-      document.getElementById('resTxt').innerHTML = 'You answered: '+rawAnswer+' = '+answer+'.<br>Possible expressions that gave '+String(target)+' included:';
+      resStr = 'You answered: '+rawAnswer+' = '+answer+'.<br>Possible expressions that gave '+String(target)+' included:';
     } else {
-      document.getElementById('resTxt').innerHTML = 'You answered: '+rawAnswer+' = '+answer+'.<br>There were no possible solutions to this problem.';
+      resStr = 'You answered: '+rawAnswer+' = '+answer+'.<br>There were unfortunately no solutions to this problem.';
     }
   }
+  document.getElementById('resTxt').innerHTML = resStr;
 }
 
 function reset(){
