@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Numbers | Praxis</title>
+    <link rel="stylesheet" href="../styles/index.css">
+  </head>
+  <body>
+    <div class="main-bg main-menu main">
+      <div class="settings-wrapper" id='settings-wrapper'>
+        <h1>Numbers</h1>
+        <p>'Countdown rules' means that you have to choose 'large' numbers (25,50,75,100) and 'small' numbers (1 to 9).</p>
+        <form class="settings" action="numbers.html" method="get">
+          <input type="checkbox" name="cdnMode" value="1" id='cdnMode' checked><label for='cdnMode'>Countdown rules</label><br>
+        </form>
+        <br>
+        <form class="cdnForm" method="post" id='cdnForm'>
+          Large Numbers: <input type="number" name="large" id='large' value="2" class='num_inpt' max="6" autocomplete="off"><br>
+          Small numbers: <input type="number" name="small" id='small' value="4" class='num_inpt' max="6" autocomplete="off"><br>
+          Time: <select class="" name="dur" id='cdnTime'>
+            <option value="30" selected="selected">30 seconds</option>
+            <option value="60">60 seconds</option>
+            <option value="120">120 seconds</option>
+            <option value="300">300 seconds</option>
+          </select>
+          <br><br>
+          <input type="submit" name="submit" value="Submit" id='cdnSubmit'>
+        </form>
+        <form class="normForm" method="post" id='normForm'>
+          <input type="number" name="n_num" id='n_num' value="6" autocomplete='off' class='num_inpt'><label for='n_num'> numbers (warning! don't go over ~8)</label>
+          <br>
+          <label for="lBound">from: </label><input type="number" name="lBound" id='lBound' value="1" autocomplete='off' class='num_inpt'>
+          <label for="uBound">to: </label><input type="number" name="uBound" id='uBound' value="9" autocomplete='off' class='num_inpt'><br>
+          Time: <select class="" name="dur" id='normTime'>
+            <option value="30" selected="selected">30 seconds</option>
+            <option value="60">60 seconds</option>
+            <option value="120">120 seconds</option>parseInt(url.searchParams.get("dur"))
+            <option value="300">300 seconds</option>
+          </select>
+          <br><br>
+          <input type="submit" name="submit" value="Submit">
+        </form>
+        <p id='error' class='error'>&nbsp;</p>
+      </div>
+      <div class="gameWrapper" id='game-wrapper' style='display: none;'>
+        <h2 class='target' id='target'>Target: </h2>
+        <div class="numbersCtnr" id='numbersCtnr'>
+
+        </div>
+        <div class="timebar" id='timebar'></div>
+        <p>Scribblings:</p>
+        <textarea name="working" rows="6" cols="48" style='resize: none;'></textarea>
+        <p>Answer:</p>
+        <input type="text" name="solution" value="" placeholder="e.g. (a+b)*(c+(d/e))-f" id='answer'>
+        <button type="button" name="submit" onclick='endGameFunc()' id='finishBTN'>Finish</button>
+        <p id='error_text'></p>
+      </div>
+      <div class="gameWrapper" id='result-wrapper'>
+        <h1 id='result'></h1>
+        <p id='resTxt'>Posssible answers included:</p>
+        <ul id='output' class='outputs'></ul>
+        <br>
+        <button onclick='retry()'>Try Again</button>
+        <button onclick='reset()'>Settings</button>
+        <a href="../index.html">Main Menu</a>
+      </div>
+      <br>
+      <p class='credits'>Created by Maxime Robeyns (2018). Feel free to <a href="https://github.com/MaximeRobeyns/praxis">contribute</a>.</p>
+    </div>
+  </body>
+  <script type="text/javascript" src='../scripts/numbers.js'></script>
+  <script type="text/javascript" src='../scripts/numbers_settings.js'></script>
+</html>
