@@ -11,6 +11,8 @@ var resultWrapper = document.getElementById('result-wrapper');
 var timebar = document.getElementById('timebar');
 var interval = null;
 var answerField = document.getElementById('answer');
+var best = document.getElementById('best');
+var othersText = document.getElementById('othersText');
 
 var numbers = [];
 var target = null;
@@ -158,10 +160,10 @@ function solve(){
   }
 
   function addExpr(expr){
-    exprsCount.push(expr);
-    var li = document.createElement('li');
+    exprsCount.push(expr.toString());
+    /*var li = document.createElement('li');
     li.appendChild(document.createTextNode(expr.toString()));
-    output.appendChild(li);
+    output.appendChild(li);*/
   }
 
   function done(){
@@ -203,6 +205,21 @@ function count(arr) {
 }
 
 function endGameFunc(){
+  exprsCount.sort(function(a, b){ return a.length - b.length; });
+  if (exprsCount.length >= 1){
+    document.getElementById('shortest').style.display = 'block';
+    best.innerHTML = exprsCount[0];
+  }
+  if (exprsCount.length > 1){
+    othersText.innerHTML = 'There were also '+String(exprsCount.length-1)+' other possible answers';
+    for (var i = 1; i < exprsCount.length; i++){
+      var li = document.createElement('li');
+      li.appendChild(document.createTextNode(exprsCount[i]));
+      output.appendChild(li);
+    }
+  } else {
+      othersText.innerHTML = '';
+  }
   clearInterval(interval);
   var illegal = [];
   var overused = [];
@@ -236,7 +253,6 @@ function endGameFunc(){
       }
     }
   }
-  console.log(overused);
 
   answerField.value = '';
   document.getElementById('finishBTN').innerHTML = 'Finish';
@@ -260,21 +276,21 @@ function endGameFunc(){
     }
 
     if (exprsCount.length > 0){
-      resStr += '<br><br>Possible expressions that gave '+String(target)+' included:';
+      resStr += '<br><br>The target value was '+String(target);
     } else {
       resStr += '<br><br>There is, however, no solution to this problem.';
     }
   } else if (answer ==  target){
     document.getElementById('result').innerHTML = 'Correct!';
     if (exprsCount.length > 0){
-      resStr = 'Your answer was: '+rawAnswer+'.<br>Other expressions that gave '+String(target)+' included:';
+      resStr = 'Your answer was: '+rawAnswer+'.<br>The target value was '+String(target);
     } else {
       resStr = 'Your answer was: '+rawAnswer+'.<br>Well done, this was the only solution to the problem.';
     }
   } else {
     document.getElementById('result').innerHTML = String(Math.abs(target-answer))+' away...';
     if (exprsCount.length > 0){
-      resStr = 'You answered: '+rawAnswer+' = '+answer+'.<br>Possible expressions that gave '+String(target)+' included:';
+      resStr = 'You answered: '+rawAnswer+' = '+answer+'.<br>The target value was '+String(target);
     } else {
       resStr = 'You answered: '+rawAnswer+' = '+answer+'.<br>There were unfortunately no solutions to this problem.';
     }
@@ -282,22 +298,27 @@ function endGameFunc(){
   document.getElementById('resTxt').innerHTML = resStr;
 }
 
-function reset(){
+function clear(){
+  document.getElementById('shortest').style.display = 'none';
   document.getElementById('output').innerHTML = '';
-  settingsWrapper.style.display = 'block';
   resultWrapper.style.display = 'none';
-  document.getElementById('cdnSubmit').focus();
   numbers = [];
   exprsCount = [];
+  document.getElementById('error_text').innerHTML = '';
+  document.getElementById('finishBTN').innerHTML = 'Finish';
+  document.getElementById('working').value = '';
+}
+
+function reset(){
+  clear();
+  settingsWrapper.style.display = 'block';
+  document.getElementById('cdnSubmit').focus();
 }
 
 function retry(){
-  document.getElementById('output').innerHTML = '';
+  clear();
   gameWrapper.style.display = 'block';
-  resultWrapper.style.display = 'none';
   settingsWrapper.style.display = 'none';
-  numbers = [];
-  exprsCount = [];
   if (settings.type == 0) {
     setupNorm();
   } else {

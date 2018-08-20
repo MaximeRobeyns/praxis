@@ -4,6 +4,15 @@
     <meta charset="utf-8">
     <title>Numbers | Praxis</title>
     <link rel="stylesheet" href="../styles/index.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124282369-1"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+        gtag('config', 'UA-124282369-1');
+    </script>
   </head>
   <body>
     <div class="main-bg main-menu main">
@@ -49,7 +58,7 @@
         </div>
         <div class="timebar" id='timebar'></div>
         <p>Scribblings:</p>
-        <textarea name="working" rows="6" cols="48" style='resize: none;'></textarea>
+        <textarea name="working" rows="6" cols="48" style='resize: none;' id='working'></textarea>
         <p>Answer:</p>
         <input type="text" name="solution" value="" placeholder="e.g. (a+b)*(c+(d/e))-f" id='answer'>
         <button type="button" name="submit" onclick='endGameFunc()' id='finishBTN'>Finish</button>
@@ -58,6 +67,9 @@
       <div class="gameWrapper" id='result-wrapper'>
         <h1 id='result'></h1>
         <p id='resTxt'>Posssible answers included:</p>
+        <h3 id='shortest'>The shortest answer was:</h3>
+        <p id='best' style='text-align: center;font-weight:bold;'></p>
+        <p id='othersText'></p>
         <ul id='output' class='outputs'></ul>
         <br>
         <button onclick='retry()'>Try Again</button>
