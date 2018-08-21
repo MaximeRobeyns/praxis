@@ -124,7 +124,7 @@ function solve(){
     if (useWorker){
       worker = new Worker("serviceworker.js");
 
-      worker.addEvenetListener('message', function(event){
+      worker.addEventListener('message', function(event){
         var expr = event.data;
         if(expr){
           addExpr(expr);
