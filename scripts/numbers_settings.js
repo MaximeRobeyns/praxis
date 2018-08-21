@@ -73,14 +73,14 @@ function setupCDN(){
   gameEnd = getNow() + (duration*1000);
   largeInts = [25,50,75,100];
   for (var i = 0; i < settings.bigints; i++) {
+    var tmpInt = largeInts[Math.floor(Math.random()*4)]
+    while (numbers.indexOf(tmpInt) >= 0) {
+      tmpInt = largeInts[Math.floor(Math.random()*4)]
+    }
     numbers.push(largeInts[Math.floor(Math.random()*4)])
   }
   for (var i = 0; i < settings.smolints; i++) {
-    var tmpInt = Math.floor(Math.random()*(9-1)+1);
-    while (numbers.indexOf(tmpInt) >= 0){
-      tmpInt = Math.floor(Math.random()*(9-1)+1);
-    }
-    numbers.push(tmpInt);
+    numbers.push(Math.floor(Math.random()*(9-1)+1));
   }
 
   target = Math.floor(Math.random()*(999-100)+100);
@@ -182,7 +182,7 @@ function loadGame(){
   settingsWrapper.style.display = 'none';
   gameWrapper.style.display = 'block';
   interval = setInterval(function(){
-    var progress = (duration*1000/(gameEnd - getNow()))-1;
+    var progress = 1-((gameEnd - getNow())/(duration*1000));
     timebar.style.width = String(400*progress)+'px';
     if (progress >= 1) {
       clearInterval(interval);
