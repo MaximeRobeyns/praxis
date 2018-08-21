@@ -271,7 +271,6 @@ function make_half (a, b, generation, addExpr){
 
 function solutions (target, numbers, cb) {
   var numcnt = numbers.length;
-  //hashtable permutations of numbers and operators?
   var full_usage = ~(~0 << numcnt);
   var generation = 0;
   var segments = new Array(full_usage);
@@ -285,7 +284,6 @@ function solutions (target, numbers, cb) {
     var expr = new Val().init(num, i, generation);
     if (num === target) {
       if (!has_single_number_solution) {
-        //if the resulting number equals the target there exists such an expr
         has_single_number_solution = true;
         cb(expr);
       }

@@ -161,9 +161,6 @@ function solve(){
 
   function addExpr(expr){
     exprsCount.push(expr.toString());
-    if (numbers.length > 6){
-      worker.terminate();
-    }
   }
 
   function done(){
