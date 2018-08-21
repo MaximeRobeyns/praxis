@@ -73,11 +73,11 @@ function setupCDN(){
   gameEnd = getNow() + (duration*1000);
   largeInts = [25,50,75,100];
   for (var i = 0; i < settings.bigints; i++) {
-    var tmpInt = largeInts[Math.floor(Math.random()*4)]
+    var tmpInt = largeInts[Math.floor(Math.random()*4)];
     while (numbers.indexOf(tmpInt) >= 0) {
-      tmpInt = largeInts[Math.floor(Math.random()*4)]
+      tmpInt = largeInts[Math.floor(Math.random()*4)];
     }
-    numbers.push(largeInts[Math.floor(Math.random()*4)])
+    numbers.push(tmpInt);
   }
   for (var i = 0; i < settings.smolints; i++) {
     numbers.push(Math.floor(Math.random()*(9-1)+1));
