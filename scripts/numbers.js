@@ -296,7 +296,6 @@ function solutions (target, numbers, cb) {
     }
   }
 
-  //Is the following code redundant?
   var uniq_solutions = {};
 
   function addExpr (expr) {

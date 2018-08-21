@@ -106,7 +106,7 @@ cdnForm.onsubmit = function(e){
 
 function solve(){
   var output = document.getElementById('output');
-  var useWorker = false;
+  var useWorker = true;
 
   if (worker){
     try{
@@ -161,6 +161,9 @@ function solve(){
 
   function addExpr(expr){
     exprsCount.push(expr.toString());
+    if (numbers.length > 6){
+      worker.terminate();
+    }
   }
 
   function done(){
@@ -181,6 +184,7 @@ function loadGame(){
   }
   settingsWrapper.style.display = 'none';
   gameWrapper.style.display = 'block';
+  answerField.focus();
   interval = setInterval(function(){
     var progress = 1-((gameEnd - getNow())/(duration*1000));
     timebar.style.width = String(400*progress)+'px';
