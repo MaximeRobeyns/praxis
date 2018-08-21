@@ -106,7 +106,7 @@ cdnForm.onsubmit = function(e){
 
 function solve(){
   var output = document.getElementById('output');
-  var useWorker = true;
+  var useWorker = false;
 
   if (worker){
     try{
