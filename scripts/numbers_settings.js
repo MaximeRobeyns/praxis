@@ -80,7 +80,7 @@ function setupCDN(){
     numbers.push(tmpInt);
   }
   for (var i = 0; i < settings.smolints; i++) {
-    numbers.push(Math.floor(Math.random()*(9-1)+1));
+    numbers.push(Math.floor(Math.random()*(10-1)+1));
   }
 
   target = Math.floor(Math.random()*(999-100)+100);
@@ -207,6 +207,9 @@ function endGameFunc(){
   if (exprsCount.length >= 1){
     document.getElementById('shortest').style.display = 'block';
     best.innerHTML = exprsCount[0];
+  } else {
+    document.getElementById('shortest').style.display = 'none';
+    best.innerHTML = '';
   }
   if (exprsCount.length > 1){
     if (exprsCount.length == 1){
@@ -266,6 +269,7 @@ function endGameFunc(){
 
   clearInterval(interval);
   var resStr = '';
+  console.log(exprsCount);
   if (illegal.length > 0 || overused.length > 0){
     document.getElementById('result').innerHTML = 'Incorrect answer.';
       resStr = 'Your answer was: '+rawAnswer+' = '+answer+'. ';
